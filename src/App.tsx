@@ -6,13 +6,15 @@ import { Home } from './page/Home';
 function App() {
   return (
     <section className="flex flex-col min-h-screen">
-      <main className="grow"> 
+      
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-      <Footer />
+      <main className="grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
       </main>
+      <Footer />
+      
     </section>
   );
 }

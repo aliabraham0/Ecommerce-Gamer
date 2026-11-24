@@ -21,7 +21,6 @@ const Error404 = () => {
           404
         </h1>
 
-        {/* Mensajes */}
         <h2 className="mt-4 text-2xl sm:text-3xl font-bold">
           Página no encontrada
         </h2>
@@ -37,7 +36,7 @@ const Error404 = () => {
           <img
             src={homeIcon}
             alt="Inicio"
-            className="w-5 h-5 object-contain"
+            className="w-5 h-5 object-contain invert"
           />
           Volver al Inicio
         </Link>

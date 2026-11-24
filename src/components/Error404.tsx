@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import ghostImg from '../assets/404.jpg';
 import homeIcon from '../assets/home-icon.png'
 

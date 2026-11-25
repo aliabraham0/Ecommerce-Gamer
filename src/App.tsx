@@ -1,17 +1,28 @@
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { Route, Routes } from 'react-router'
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
+import { Home } from './page/Home'
+import { Admin } from './page/Admin'
+import { Error404 } from './page/error404'
+import { Login } from './page/Login'
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <BrowserRouter>
-    <Navbar />
-     <Routes>
-      <Route path="/" />
-      <Route />
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin" element={<Admin />} />
+        </Route>
+        
+        <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </>
   )
 }
 

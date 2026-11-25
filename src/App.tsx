@@ -12,11 +12,8 @@ function App() {
       <main className="grow">
         <Routes>
           <Route path="/" element={<Home />} />
-        </Routes>
-      </main>
-      <main className="Error404">
-<Routes>
-<Route path="*" element={<Error404 />} />
+        
+         <Route path="*" element={<Error404 />} />
 
 </Routes>
 

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-mport imgGta6 from '../assets/gta6.jpg';
+import { useState, useEffect } from 'react';
+import imgGta6 from '../assets/gta6.jpg';
 import imgMinecraft from '../assets/minecraft.png';
 import imgDeeprooted from '../assets/deeprooted.jpeg';
 
@@ -28,7 +28,7 @@ const slides: Slide[] =[ {
     destacado: 'DEEPROOTED',
     subtitulo: 'Una aventura subterránea llena de secretos.',
     boton: 'Ver Juego',
-    imagen: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1600',
+    imagen: imgDeeprooted,
   },                                      
   {
     titulo1: 'Construí tu',
@@ -36,40 +36,41 @@ const slides: Slide[] =[ {
     destacado: 'Minecraft',
     subtitulo: 'Aventuras infinitas bloque a bloque.',
     boton: 'Ver Juego',
-    imagen: 'https://images.unsplash.com/photo-1587573089734-09cb69c0f2b4?w=1600',
+    imagen: imgMinecraft,
   },
 ];                                         
  export function Home() {
   const [actual, setActual] = useState<number>(0);
 
   
-  const anterior = () => {
-    if (actual === 0) {
-      setActual(slides.length - 1);
-    } else {
-      setActual(actual - 1);
-    }
+ const anterior = () => {
+    setActual((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
 
   const siguiente = () => {
-    if (actual === slides.length - 1) {
-      setActual(0);
-    } else {
-      setActual(actual + 1);
-    }
+    setActual((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   };
 
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      siguiente();
+    }, 5000);
+
+    return () => clearInterval(intervalo);
+  }, [actual]);
+
   const banner: Slide = slides[actual];
-                                         return (
+  return (
+
+
     <div className="relative w-full h-[300px] md:h-[380px] bg-slate-950 overflow-hidden">
-      
       <img
         src={banner.imagen}
         alt={banner.destacado}
-        className="w-full h-full object-cover object-right"
+        className="w-full h-full object-cover object-right transition-all duration-500"
       />
+      <div className="absolute inset-0 bg-black/50" />
 
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-transparent" />                                                               
       <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-16 max-w-2xl">
         <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
           {banner.titulo1} <br />
@@ -89,7 +90,6 @@ const slides: Slide[] =[ {
         </div>
       </div>
 
-    
       <button
         onClick={anterior}
         aria-label="Anterior"
@@ -103,17 +103,16 @@ const slides: Slide[] =[ {
         aria-label="Siguiente"
         className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-purple-600 text-white w-8 h-8 rounded-full"
       >
-      ,
+        ›
       </button>
 
-      {/* Puntitos de abajo */}
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
         {slides.map((_, index: number) => (
           <button
             key={index}
             onClick={() => setActual(index)}
             aria-label={`Ir al slide ${index + 1}`}
-            className={`w-2.5 h-2.5 rounded-full ${
+            className={`w-2.5 h-2.5 rounded-full transition-colors ${
               actual === index ? 'bg-purple-500' : 'bg-gray-500'
             }`}
           />
@@ -121,6 +120,7 @@ const slides: Slide[] =[ {
       </div>
     </div>
   );
-} 
+}
 
-export default Home
+
+export default Home;

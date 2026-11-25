@@ -6,12 +6,12 @@ interface Slide {
 titulo2:  string;
 destacado: string;
 subtitulo: string;
-boton: string:
+boton: string;
 imagen: string;
-]
+}
 
 
-const slides: slide[] ={                                              titulo1: 'Descubrí los',
+const slides: Slide[] =[ {                                              titulo1: 'Descubrí los',
     titulo2: 'mejores',
     destacado: 'videojuegos',
     subtitulo: 'Tu tienda gamer, en un solo lugar.',
@@ -43,7 +43,7 @@ const slides: slide[] ={                                              titulo1: '
     imagen: 'https://images.unsplash.com/photo-1587573089734-09cb69c0f2b4?w=1600',
   },
 ];                                         
-xport default function BannerHome() {
+ function BannerHome() {
   const [actual, setActual] = useState<number>(0);
 
   
@@ -125,8 +125,7 @@ xport default function BannerHome() {
       </div>
     </div>
   );
-}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ]
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ]
 
 
 const Home = () => {

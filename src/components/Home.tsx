@@ -43,7 +43,7 @@ const slides: Slide[] =[ {                                              titulo1:
     imagen: 'https://images.unsplash.com/photo-1587573089734-09cb69c0f2b4?w=1600',
   },
 ];                                         
- function BannerHome() {
+ export function Home() {
   const [actual, setActual] = useState<number>(0);
 
   
@@ -107,7 +107,7 @@ const slides: Slide[] =[ {                                              titulo1:
         aria-label="Siguiente"
         className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-purple-600 text-white w-8 h-8 rounded-full"
       >
-        ›
+      ,
       </button>
 
       {/* Puntitos de abajo */}
@@ -125,17 +125,6 @@ const slides: Slide[] =[ {                                              titulo1:
       </div>
     </div>
   );
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ]
-
-
-const Home = () => {
-  return (
-    <div>
-
-      
-      
-    </div>
-  )
-}
+} 
 
 export default Home

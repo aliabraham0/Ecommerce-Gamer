@@ -17,7 +17,7 @@ function App() {
   const handleAddToCart = () => setCartCount((count) => count + 1)
 
   return (
-    <section className="flex min-h-screen min-w-[320px] flex-col bg-[#080a14] bg-[radial-gradient(ellipse_at_50%_0%,rgba(86,47,150,0.18),transparent_44rem)] [font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] font-normal text-[#f5f4fb] antialiased [font-synthesis:none] [font-optical-sizing:auto] [text-rendering:optimizeLegibility] [&_a]:text-inherit [&_a]:no-underline [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-[#d5adff] [&_a:focus-visible]:outline-offset-[3px] motion-reduce:[&_*]:scroll-auto motion-reduce:[&_*]:transition-none motion-reduce:[&_*::before]:transition-none motion-reduce:[&_*::after]:transition-none">
+    <section className="flex min-h-screen min-w-[320px] flex-col bg-[#080a14] bg-[radial-gradient(ellipse_at_50%_0%,rgba(86,47,150,0.18),transparent_44rem)] font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] font-normal text-[#f5f4fb] antialiased [font-synthesis:none] [font-optical-sizing:auto] [text-rendering:optimizeLegibility] [&_a]:text-inherit [&_a]:no-underline [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-[#d5adff] [&_a:focus-visible]:outline-offset-[3px] motion-reduce:**:scroll-auto motion-reduce:**:transition-none motion-reduce:[&_*::before]:transition-none motion-reduce:[&_*::after]:transition-none">
       <Navbar cartCount={cartCount} search={search} onSearch={setSearch} />
 
       <main className="grow">

@@ -28,8 +28,7 @@ const Error404 = () => {
           La página que buscas no existe o fue movida.
         </p>
 
-
-        <Link
+<Link
           to="/"
           className="mt-8 inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold transition-colors shadow-lg shadow-violet-600/30"
         >

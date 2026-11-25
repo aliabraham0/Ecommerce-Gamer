@@ -1,4 +1,6 @@
-import {createContext, useContext,useState, type ReactNode,} from "react";
+
+import { createContext, useContext, type ReactNode } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export interface AuthUser {
   id: number;
@@ -22,40 +24,42 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<AuthUser | null>(() => {
-    const savedUser = localStorage.getItem("gamestore_user");
 
-    if (!savedUser) return null;
+ 
+  const [user, setUser] = useLocalStorage<AuthUser | null>(
+    "gamestore_user",
+    null
+  );
 
-    try {
-      return JSON.parse(savedUser) as AuthUser;
-    } catch {
-      localStorage.removeItem("gamestore_user");
-      return null;
-    }
-  });
-
+  
   const login = (userData: AuthUser) => {
     setUser(userData);
-    localStorage.setItem("gamestore_user", JSON.stringify(userData));
   };
 
+ 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("gamestore_user");
   };
 
+  
   const isAuthenticated = user !== null;
   const isAdmin = user?.role === "admin";
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, isAdmin, login, logout }}
+      value={{
+        user,
+        isAuthenticated,
+        isAdmin,
+        login,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>
   );
 };
+
 
 export const useAuth = () => {
   const context = useContext(AuthContext);

@@ -5,7 +5,8 @@ import { Footer } from './components/Footer'
 import { Home } from './page/Home'
 import { Admin } from './page/Admin'
 import { Error404 } from './page/error404'
-import { Login } from './page/Login'
+import Login from './page/Login'
+import Register from './page/Register'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="/admin" element={<Admin />} />

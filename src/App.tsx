@@ -8,6 +8,7 @@ import { Error404 } from './page/error404'
 import Login from './page/Login'
 import Register from './page/Register'
 import ProtectedRoute from './components/ProtectedRoute'
+import About from './page/About'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <main className="grow">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/About" element={<About/>}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 

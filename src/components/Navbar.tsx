@@ -38,7 +38,7 @@ export const Navbar = ({ onSearch }: NavbarProps) => {
           <IoCartSharp className="text-violet-500"/>
           <span>tienda</span>
           </NavLink>
-        <NavLink to="" className="flex items-center gap-2 text-white rounded-md hover:border-violet-400 hover:border-transparent px-2 py-2 hover:text-sky-400 hover:bg-violet-800 transition-colors">
+        <NavLink to="/About" className="flex items-center gap-2 text-white rounded-md hover:border-violet-400 hover:border-transparent px-2 py-2 hover:text-sky-400 hover:bg-violet-800 transition-colors">
           <BsPersonFill className="text-violet-500"/>
           <span>Sobre nosotros</span>
           </NavLink>

@@ -1,31 +1,91 @@
+import { useState } from "react";
+import { NavLink } from "react-router";
+import { IoHomeOutline, IoGameControllerSharp, IoCartSharp } from "react-icons/io5";
+import { BsPersonFill } from "react-icons/bs";
+import { TfiHeadphoneAlt } from "react-icons/tfi";
+import { FiShoppingCart } from "react-icons/fi";
+import { SearchBar } from "./SearchBar";
 
-import { FiShoppingCart } from 'react-icons/fi'
-
-type NavbarProps = {
-  cartCount: number
+interface NavbarProps {
+  cartCount: number;
+  onSearch?: (value: string) => void;
 }
 
-export const Navbar = ({ cartCount }: NavbarProps) => {
+export const Navbar = ({ cartCount, onSearch }: NavbarProps) => {
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (value: string) => {
+    setSearch(value);
+    onSearch?.(value);
+  };
+
   return (
-    <header className="site-header">
-      <nav className="site-nav" aria-label="Navegación principal">
-        <a className="site-brand" href="/" aria-label="Pixel Vault, inicio">
-          <span className="site-brand__mark">P</span>
-          <span>PIXEL<span className="site-brand__accent">VAULT</span></span>
-        </a>
-        <div className="site-nav__links">
-          <a href="/">Inicio</a>
-          <button
-            className="cart-indicator"
-            type="button"
-            aria-label={`Carrito: ${cartCount} ${cartCount === 1 ? 'producto' : 'productos'}`}
+    <header className="bg-slate-900 border-b border-violet-500/30 p-3">
+      <nav className="flex flex-wrap gap-4 items-center justify-end p-3">
+        <div className="justify-start flex-grow">
+          <NavLink
+            to="/"
+            className="flex items-center gap-2 text-3xl font-bold text-white"
           >
-            <FiShoppingCart aria-hidden="true" />
-            <span>Carrito</span>
-            <span className="cart-indicator__count" aria-live="polite">{cartCount}</span>
-          </button>
+            <IoGameControllerSharp className="text-violet-500" />
+            <span className="hover:text-sky-300">
+              Game<span className="text-violet-500">Store</span>
+            </span>
+          </NavLink>
         </div>
+
+        <NavLink
+          to="/"
+          className="flex items-center gap-2 px-2 py-2 text-white rounded-md transition-colors hover:bg-violet-800 hover:text-sky-400"
+        >
+          <IoHomeOutline className="text-violet-500" />
+          <span>Inicio</span>
+        </NavLink>
+
+        <NavLink
+          to="/tienda"
+          className="flex items-center gap-2 px-2 py-2 text-white rounded-md transition-colors hover:bg-violet-800 hover:text-sky-400"
+        >
+          <IoCartSharp className="text-violet-500" />
+          <span>Tienda</span>
+        </NavLink>
+
+        <NavLink
+          to="/About"
+          className="flex items-center gap-2 px-2 py-2 text-white rounded-md transition-colors hover:bg-violet-800 hover:text-sky-400"
+        >
+          <BsPersonFill className="text-violet-500" />
+          <span>Sobre nosotros</span>
+        </NavLink>
+
+        <NavLink
+          to="/contacto"
+          className="flex items-center gap-2 px-2 py-2 text-white rounded-md transition-colors hover:bg-violet-800 hover:text-sky-400"
+        >
+          <TfiHeadphoneAlt className="text-violet-500" />
+          <span>Contacto</span>
+        </NavLink>
+
+        <SearchBar search={search} onSearch={handleSearch} />
+
+        <div className="flex items-center gap-2 text-white">
+          <FiShoppingCart className="text-violet-500" />
+          <span>Carrito</span>
+          <span
+            className="bg-violet-600 text-white rounded-full px-2 py-1 text-sm"
+            aria-live="polite"
+          >
+            {cartCount}
+          </span>
+        </div>
+
+        <NavLink
+          to="/login"
+          className="border border-violet-400 rounded-md px-2 py-2 bg-violet-600 text-white hover:text-sky-400"
+        >
+          Inicio de sesión
+        </NavLink>
       </nav>
     </header>
-  )
-}
+  );
+};

@@ -1,7 +1,2 @@
 
-
-export const Home = () => {
-  return (
-    <div>home</div>
-  )
-}
+export const Home = () => <main className="store-home" />

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="960" viewBox="0 0 720 960" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="360" y1="0" x2="360" y2="960" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#15142C"/>
+      <stop offset=".48" stop-color="#40264E"/>
+      <stop offset="1" stop-color="#090C1A"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0" cy="0" r="1" gradientTransform="matrix(0 248 -248 0 356 385)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE7A0"/>
+      <stop offset=".14" stop-color="#E9A64C" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#D8735C" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mountain" x1="350" y1="530" x2="350" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#543A5A"/>
+      <stop offset="1" stop-color="#111522"/>
+    </linearGradient>
+    <linearGradient id="blade" x1="352" y1="297" x2="371" y2="735" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF1C7"/>
+      <stop offset=".45" stop-color="#E6A947"/>
+      <stop offset="1" stop-color="#A65A40" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="85" y="115" width="550" height="550" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="30"/>
+    </filter>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h720v960H0z"/>
+  <circle cx="360" cy="390" r="245" fill="url(#sun)" filter="url(#glow)"/>
+  <circle cx="360" cy="390" r="166" stroke="#E9B763" stroke-opacity=".62" stroke-width="2"/>
+  <circle cx="360" cy="390" r="140" stroke="#F3D28B" stroke-opacity=".46" stroke-width="1.5"/>
+  <circle cx="360" cy="390" r="102" stroke="#F4CB72" stroke-opacity=".72" stroke-width="3"/>
+  <path stroke="#FFD98A" stroke-linecap="round" stroke-width="8" d="M360 303c42 38 59 82 44 117-12 30-45 31-63 7-14-19-9-44 11-56 17-11 38 0 36 20-2 17-19 25-32 19"/>
+  <path stroke="#F2B753" stroke-linecap="round" stroke-opacity=".8" stroke-width="3" d="M360 270v-38m0 354v-38m120-158h38M202 390h38m204-119 27-27M249 537l27-27m168 0 27 27M249 243l27 27"/>
+  <path fill="url(#mountain)" d="m0 660 106-105 74 64 132-178 86 112 74-82 111 132 64-78 73 59v376H0V660Z"/>
+  <path fill="#131725" d="m0 724 139-119 90 83 126-142 79 88 102-94 110 123 74-64v361H0V724Z"/>
+  <path fill="#0B101B" d="m0 810 140-83 111 81 110-118 84 80 96-91 102 81 77-50v250H0V810Z"/>
+  <path fill="#D7994D" fill-opacity=".72" d="m347 487 25 0-5 252h-17l-3-252Z"/>
+  <path fill="url(#blade)" d="m353 322 13-27 12 27-6 304h-14l-5-304Z"/>
+  <path fill="#DCA65C" d="m353 617 18 0 20 25-30-10-28 10 20-25Z"/>
+  <path fill="#F0C777" fill-opacity=".55" d="m356 678 9 0 16 22-21-7-19 7 15-22Z"/>
+  <g fill="#F9D995" fill-opacity=".75">
+    <circle cx="126" cy="204" r="2"/><circle cx="566" cy="176" r="2"/><circle cx="594" cy="354" r="1.5"/>
+    <circle cx="155" cy="458" r="1.5"/><circle cx="520" cy="467" r="2"/><circle cx="248" cy="158" r="1.5"/>
+    <circle cx="460" cy="223" r="1.5"/><circle cx="92" cy="348" r="1.5"/><circle cx="637" cy="270" r="2"/>
+  </g>
+  <path fill="#F7E5BE" fill-opacity=".72" d="M0 0h720v960H0z" opacity=".04"/>
+</svg>

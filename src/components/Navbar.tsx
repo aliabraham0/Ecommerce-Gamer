@@ -1,12 +1,23 @@
+import { useState } from "react";
 import { NavLink } from "react-router";
 import { IoHomeOutline } from "react-icons/io5";
 import { IoGameControllerSharp } from "react-icons/io5";
 import { IoCartSharp } from "react-icons/io5";
 import { BsPersonFill } from "react-icons/bs";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
+import { SearchBar } from "./SearchBar";
 
-export const Navbar = () => {
-    
+interface NavbarProps {
+  onSearch?: (value: string) => void;
+}
+
+export const Navbar = ({ onSearch }: NavbarProps) => {
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (value: string) => {
+    setSearch(value);
+    onSearch?.(value);
+  };
   return (
     <header className="bg-slate-900 border-b border-violet-500/30 p-3">
       <div className="flex flex-wrap gap-4 items-center justify-end p-3 ">
@@ -35,11 +46,7 @@ export const Navbar = () => {
           <TfiHeadphoneAlt className="text-violet-500"/>
           <span>Contacto</span>
         </NavLink>
-        <input
-           className="placeholder:text-gray-400 placeholder:italic  ..."
-          placeholder="buscar juego..."
-          type="text"
-          name="search"/>
+         <SearchBar search={search} onSearch={handleSearch} />
         <div>
           <NavLink to="/login" className="border border-violet-400 rounded-md px-2 py-2 bg-violet-600 text-white hover:text-sky-400">
             Inicio de sesión

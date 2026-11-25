@@ -7,6 +7,7 @@ function App() {
   return (
     <section className="flex flex-col min-h-screen">
       <main className="grow"> 
+        
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -14,6 +15,7 @@ function App() {
       <Footer />
       </main>
     </section>
+       
   );
 }
 

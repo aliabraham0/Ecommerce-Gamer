@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router'
-import { FiArrowLeft, FiHeart, FiShoppingCart } from 'react-icons/fi'
+import { FiArrowLeft, FiHeart, FiMaximize2, FiShoppingCart, FiX } from 'react-icons/fi'
 import { games } from '../data/game'
 
 type DetailTab = 'description' | 'requirements' | 'reviews'
@@ -11,6 +11,29 @@ export const GameDetail = ({ onAddToCart }: { onAddToCart: () => void }) => {
   const [activeImage, setActiveImage] = useState(0)
   const [activeTab, setActiveTab] = useState<DetailTab>('description')
   const [isFavorite, setIsFavorite] = useState(false)
+  const [isImageOpen, setIsImageOpen] = useState(false)
+  const imageDialogRef = useRef<HTMLDialogElement>(null)
+  const imageDialogCloseRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    const dialog = imageDialogRef.current
+    if (!dialog) return
+
+    if (!isImageOpen) {
+      if (dialog.open) dialog.close()
+      return
+    }
+
+    if (!dialog.open) dialog.showModal()
+    imageDialogCloseRef.current?.focus()
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsImageOpen(false)
+    }
+
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [isImageOpen])
 
   if (!game) {
     return (
@@ -31,13 +54,20 @@ export const GameDetail = ({ onAddToCart }: { onAddToCart: () => void }) => {
       </Link>
       <div className="game-detail__layout">
         <section className="game-detail__gallery" aria-label={`Galería de ${game.title}`}>
-          <div className={`game-detail__main-image game-detail__main-image--${activeImage}`}>
+          <button
+            className="game-detail__main-image"
+            type="button"
+            onClick={() => setIsImageOpen(true)}
+            aria-haspopup="dialog"
+            aria-label={`Ver imagen completa: ${activeImage === 0 ? 'portada' : `captura ${activeImage}`} de ${game.title}`}
+          >
             <img
               src={gallery[activeImage]}
               alt={activeImage === 0 ? `Portada de ${game.title}` : `Captura ${activeImage} de ${game.title}`}
             />
             <span className="game-detail__image-count">{String(activeImage + 1).padStart(2, '0')} / {String(gallery.length).padStart(2, '0')}</span>
-          </div>
+            <span className="game-detail__zoom-hint"><FiMaximize2 aria-hidden="true" /> Ver imagen completa</span>
+          </button>
           <div className="game-detail__thumbnails">
             {gallery.map((image, index) => (
               <button
@@ -125,6 +155,31 @@ export const GameDetail = ({ onAddToCart }: { onAddToCart: () => void }) => {
           </section>
         </section>
       </div>
+      <dialog
+        className="game-image-lightbox"
+        ref={imageDialogRef}
+        aria-label={`Imagen completa de ${game.title}`}
+        onClose={() => setIsImageOpen(false)}
+        onCancel={() => setIsImageOpen(false)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) setIsImageOpen(false)
+        }}
+      >
+        <button
+          className="game-image-lightbox__close"
+          ref={imageDialogCloseRef}
+          type="button"
+          onClick={() => setIsImageOpen(false)}
+          aria-label="Cerrar imagen ampliada"
+        >
+          <FiX aria-hidden="true" />
+        </button>
+        <img
+          className="game-image-lightbox__image"
+          src={gallery[activeImage]}
+          alt={activeImage === 0 ? `Portada completa de ${game.title}` : `Captura ${activeImage} completa de ${game.title}`}
+        />
+      </dialog>
     </main>
   )
 }

@@ -22,7 +22,7 @@ export const GameDetail = ({ onAddToCart }: { onAddToCart: () => void }) => {
     )
   }
 
-  const gallery = [game.image, game.image, game.image, game.image]
+  const gallery = [game.image, ...game.gallery]
 
   return (
     <main className="game-detail">
@@ -32,7 +32,10 @@ export const GameDetail = ({ onAddToCart }: { onAddToCart: () => void }) => {
       <div className="game-detail__layout">
         <section className="game-detail__gallery" aria-label={`Galería de ${game.title}`}>
           <div className={`game-detail__main-image game-detail__main-image--${activeImage}`}>
-            <img src={gallery[activeImage]} alt={`Imagen ${activeImage + 1} de ${game.title}`} />
+            <img
+              src={gallery[activeImage]}
+              alt={activeImage === 0 ? `Portada de ${game.title}` : `Captura ${activeImage} de ${game.title}`}
+            />
             <span className="game-detail__image-count">{String(activeImage + 1).padStart(2, '0')} / {String(gallery.length).padStart(2, '0')}</span>
           </div>
           <div className="game-detail__thumbnails">
@@ -42,7 +45,7 @@ export const GameDetail = ({ onAddToCart }: { onAddToCart: () => void }) => {
                 key={`${image}-${index}`}
                 type="button"
                 onClick={() => setActiveImage(index)}
-                aria-label={`Ver imagen ${index + 1} de ${game.title}`}
+                aria-label={index === 0 ? `Ver portada de ${game.title}` : `Ver captura ${index} de ${game.title}`}
                 aria-pressed={activeImage === index}
               >
                 <img src={image} alt="" />

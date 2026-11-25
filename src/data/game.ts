@@ -11,6 +11,7 @@ export type Game = {
   description: string
   price: number
   image: string
+  gallery: string[]
   category: string
   developer: string
   rating: number
@@ -42,6 +43,33 @@ const sampleReviews: GameReview[] = [
   },
 ]
 
+const coverImages = import.meta.glob<string>('../assets/games/portada/*', { eager: true, import: 'default' })
+const galleryImages = import.meta.glob<string>('../assets/games/gallery/*', { eager: true, import: 'default' })
+
+const getImage = (images: Record<string, string>, filename: string): string => {
+  const imagePath = Object.keys(images).find((path) => path.endsWith(`/${filename}`))
+  const image = imagePath ? images[imagePath] : undefined
+
+  if (!image) {
+    throw new Error(`No se encontró la imagen "${filename}" en los recursos del catálogo.`)
+  }
+
+  return image
+}
+
+const gameArtwork: Record<number, { cover: string; gallery: string[] }> = {
+  1: { cover: getImage(coverImages, 'Eldenring.jpg'), gallery: ['Eldenring1.jpg', 'Eldenring2.jpg', 'Eldenring3.jpg'].map((image) => getImage(galleryImages, image)) },
+  2: { cover: getImage(coverImages, 'Omori.jpg'), gallery: ['omori1.jpg', 'omori2.jpg', 'omori3.jpg'].map((image) => getImage(galleryImages, image)) },
+  3: { cover: getImage(coverImages, 'Minecraft.jpg'), gallery: ['Minecraft1.jpg', 'Minecraft2.jpg', 'Minecraft3.jpg'].map((image) => getImage(galleryImages, image)) },
+  4: { cover: getImage(coverImages, 'gta.jpg'), gallery: ['gta1.jpg', 'gta2.jpg', 'gta3.jpg'].map((image) => getImage(galleryImages, image)) },
+  5: { cover: getImage(coverImages, 'OneShot.jpg'), gallery: ['OneShot1.jpg', 'OneShot2.jpg', 'OneShot3.jpg'].map((image) => getImage(galleryImages, image)) },
+  6: { cover: getImage(coverImages, 'Hylics.jpg'), gallery: ['Hylics1.jpg', 'Hylics2.jpg', 'Hylics3.jpg'].map((image) => getImage(galleryImages, image)) },
+  7: { cover: getImage(coverImages, 'Silksong.jpg'), gallery: ['Silksong1.jpg', 'Silksong2.jpg', 'Silksong3.jpg'].map((image) => getImage(galleryImages, image)) },
+  8: { cover: getImage(coverImages, 'REPO.jpg'), gallery: ['REPO1.jpg', 'REPO2.jpg', 'REPO3.jpg'].map((image) => getImage(galleryImages, image)) },
+  9: { cover: getImage(coverImages, 'celeste.jpg'), gallery: ['celeste1.jpg', 'celeste2.jpg', 'celeste3.jpg'].map((image) => getImage(galleryImages, image)) },
+  10: { cover: getImage(coverImages, 'DEEPROOTED.png'), gallery: ['DEEPROOTED1.png', 'DEEPROOTED2.png'].map((image) => getImage(galleryImages, image)) },
+}
+
 const createGame = (
   id: number,
   title: string,
@@ -55,7 +83,8 @@ const createGame = (
   id,
   title,
   price,
-  image: '/game-cover.svg',
+  image: gameArtwork[id].cover,
+  gallery: gameArtwork[id].gallery,
   category,
   developer,
   description,

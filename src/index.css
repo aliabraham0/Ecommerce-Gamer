@@ -398,21 +398,6 @@ a:focus-visible {
   object-fit: cover;
 }
 
-.game-detail__main-image--1 img,
-.game-detail__thumbnail--1 img {
-  filter: hue-rotate(35deg) saturate(0.82);
-}
-
-.game-detail__main-image--2 img,
-.game-detail__thumbnail--2 img {
-  filter: hue-rotate(165deg) saturate(0.9);
-}
-
-.game-detail__main-image--3 img,
-.game-detail__thumbnail--3 img {
-  filter: hue-rotate(275deg) saturate(1.05);
-}
-
 .game-detail__image-count {
   position: absolute;
   right: 12px;

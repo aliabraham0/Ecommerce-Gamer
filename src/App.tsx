@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <Navbar cartCount={cartCount} />
       <Routes>
-        <Route path="/" element={<Home onAddToCart={() => setCartCount((count) => count + 1)} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/detalle/:id" element={<GameDetail onAddToCart={() => setCartCount((count) => count + 1)} />} />
       </Routes>
       <Footer />

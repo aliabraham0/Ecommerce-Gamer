@@ -268,7 +268,7 @@ export function Admin() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-left min-w-[600px]">
+            <table className="w-full text-left min-w-150">
 
               <thead className="bg-[#19192F] text-gray-400 text-sm">
                 <tr>

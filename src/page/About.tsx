@@ -10,7 +10,7 @@ function About() {
     <main className="min-h-screen bg-[#0B0B1A] text-white">
 
      
-      <section className="text-center px-6 py-20 bg-gradient-to-b from-violet-950/40 to-[#0B0B1A]">
+      <section className="text-center px-6 py-20 bg-linear-to-b from-violet-950/40 to-[#0B0B1A]">
         <IoGameControllerSharp className="text-violet-500 text-6xl mx-auto mb-5" />
 
         <h1 className="text-4xl md:text-6xl font-black mb-5">

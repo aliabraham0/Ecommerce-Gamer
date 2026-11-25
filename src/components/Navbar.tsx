@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NavLink } from "react-router";
 import { IoHomeOutline, IoGameControllerSharp, IoCartSharp } from "react-icons/io5";
 import { BsPersonFill } from "react-icons/bs";
@@ -8,21 +7,15 @@ import { SearchBar } from "./SearchBar";
 
 interface NavbarProps {
   cartCount: number;
-  onSearch?: (value: string) => void;
+  search: string;
+  onSearch: (value: string) => void;
 }
 
-export const Navbar = ({ cartCount, onSearch }: NavbarProps) => {
-  const [search, setSearch] = useState("");
-
-  const handleSearch = (value: string) => {
-    setSearch(value);
-    onSearch?.(value);
-  };
-
+export const Navbar = ({ cartCount, search, onSearch }: NavbarProps) => {
   return (
     <header className="bg-slate-900 border-b border-violet-500/30 p-3">
       <nav className="flex flex-wrap gap-4 items-center justify-end p-3">
-        <div className="justify-start flex-grow">
+        <div className="justify-start grow">
           <NavLink
             to="/"
             className="flex items-center gap-2 text-3xl font-bold text-white"
@@ -66,7 +59,7 @@ export const Navbar = ({ cartCount, onSearch }: NavbarProps) => {
           <span>Contacto</span>
         </NavLink>
 
-        <SearchBar search={search} onSearch={handleSearch} />
+        <SearchBar search={search} onSearch={onSearch} />
 
         <div className="flex items-center gap-2 text-white">
           <FiShoppingCart className="text-violet-500" />

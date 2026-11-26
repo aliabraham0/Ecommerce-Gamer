@@ -17,40 +17,20 @@ interface AuthContextType {
   logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useLocalStorage<AuthUser | null>("gamestore_user", null);
 
-export const AuthProvider = ({ children }: AuthProviderProps) => {
-
- 
-  const [user, setUser] = useLocalStorage<AuthUser | null>(
-    "gamestore_user",
-    null
-  );
-
-  
-  const login = (userData: AuthUser) => {
-    setUser(userData);
-  };
-
- 
-  const logout = () => {
-    setUser(null);
-  };
-
-  
-  const isAuthenticated = user !== null;
-  const isAdmin = user?.role === "admin";
+  const login = (userData: AuthUser) => setUser(userData);
+  const logout = () => setUser(null);
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        isAuthenticated,
-        isAdmin,
+        isAuthenticated: user !== null,
+        isAdmin: user?.role === "admin",
         login,
         logout,
       }}
@@ -59,7 +39,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     </AuthContext.Provider>
   );
 };
-
 
 export const useAuth = () => {
   const context = useContext(AuthContext);

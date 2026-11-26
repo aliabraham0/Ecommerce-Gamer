@@ -4,13 +4,15 @@ import { IoGameControllerSharp } from "react-icons/io5";
 import { BsController, BsPeopleFill, BsShieldCheck } from "react-icons/bs";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import Fernado from "../assets/Fernado.png";
+import josetomas from"../assets/josetomas.jpeg";
+import abrahamaguilarali from"../assets/abrahamaguilarali.png";
 
 function About() {
   return (
     <main className="min-h-screen bg-[#0B0B1A] text-white">
 
      
-      <section className="text-center px-6 py-20 bg-gradient-to-b from-violet-950/40 to-[#0B0B1A]">
+      <section className="text-center px-6 py-20 bg-linear-to-b from-violet-950/40 to-[#0B0B1A]">
         <IoGameControllerSharp className="text-violet-500 text-6xl mx-auto mb-5" />
 
         <h1 className="text-4xl md:text-6xl font-black mb-5">
@@ -132,18 +134,19 @@ function About() {
           <article className="bg-[#121224] border border-violet-500/20 rounded-2xl overflow-hidden text-center hover:border-violet-500 transition duration-300 hover:-translate-y-2">
 
             <div className="p-6">
-              <div
-                role="img"
-                aria-label="Avatar de colaborador"
-                className="w-40 h-40 mx-auto rounded-full border-4 border-violet-500 bg-[#0B0B1A] shadow-lg shadow-violet-500/20 flex items-center justify-center"
-              >
-                <BsPeopleFill className="text-violet-400 text-6xl" aria-hidden="true" />
-              </div>
+                
+              <img
+                    src={josetomas}
+                     alt="Fotografía de Jose Tomas"
+                    className="w-40 h-40 mx-auto rounded-full object-cover border-4 border-violet-500 shadow-lg shadow-violet-500/20"
+                    />
+                
+              
             </div>
 
             <div className="px-6 pb-7">
               <h3 className="text-xl font-bold">
-                Nombre del colaborador 1
+                Jose Tomas
               </h3>
 
               <p className="text-violet-400 mt-2">
@@ -171,7 +174,7 @@ function About() {
 
             <div className="px-6 pb-7">
               <h3 className="text-xl font-bold">
-                Nombre del colaborador 2
+                Fernando Ignacio Ibañez
               </h3>
 
               <p className="text-violet-400 mt-2">
@@ -190,22 +193,21 @@ function About() {
           <article className="bg-[#121224] border border-violet-500/20 rounded-2xl overflow-hidden text-center hover:border-violet-500 transition duration-300 hover:-translate-y-2">
 
             <div className="p-6">
-              <div
-                role="img"
-                aria-label="Avatar de colaborador"
-                className="w-40 h-40 mx-auto rounded-full border-4 border-violet-500 bg-[#0B0B1A] shadow-lg shadow-violet-500/20 flex items-center justify-center"
-              >
-                <BsPeopleFill className="text-violet-400 text-6xl" aria-hidden="true" />
-              </div>
+              <img
+                src={abrahamaguilarali}
+                alt="Fotografía de abrahamagularali"
+                 className="w-40 h-40 mx-auto rounded-full object-cover border-4 border-violet-500 shadow-lg shadow-violet-500/20"
+                />
+              
             </div>
 
             <div className="px-6 pb-7">
               <h3 className="text-xl font-bold">
-                Nombre del colaborador 3
+                Abraham Aguilar Ali
               </h3>
 
               <p className="text-violet-400 mt-2">
-                Diseñador UI/UX
+                Desarrollador Backend
               </p>
 
               <p className="text-gray-400 text-sm mt-3">

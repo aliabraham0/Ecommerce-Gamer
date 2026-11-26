@@ -5,6 +5,27 @@ import { IoGameControllerSharp } from "react-icons/io5";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useAuth } from "../context/AuthContext";
 
+type StoredUser = {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  role: "admin" | "user";
+};
+
+const isStoredUser = (value: unknown): value is StoredUser => {
+  if (typeof value !== "object" || value === null) return false;
+  const user = value as Record<string, unknown>;
+
+  return (
+    typeof user.id === "number" &&
+    typeof user.name === "string" &&
+    typeof user.email === "string" &&
+    typeof user.password === "string" &&
+    (user.role === "admin" || user.role === "user")
+  );
+};
+
 function Register() {
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -38,13 +59,24 @@ function Register() {
     }
 
    
-    const savedUsers = localStorage.getItem("gamestore_users");
+    let users: StoredUser[];
+    try {
+      const savedUsers = localStorage.getItem("gamestore_users");
+      const parsedUsers: unknown = savedUsers ? JSON.parse(savedUsers) : [];
 
-    const users = savedUsers ? JSON.parse(savedUsers) : [];
+      if (!Array.isArray(parsedUsers) || !parsedUsers.every(isStoredUser)) {
+        setError("No se pudieron cargar las cuentas registradas.");
+        return;
+      }
 
-   
+      users = parsedUsers;
+    } catch {
+      setError("No se pudieron cargar las cuentas registradas.");
+      return;
+    }
+
     const emailExists = users.some(
-      (user: { email: string }) =>
+      (user) =>
         user.email.toLowerCase() === email.trim().toLowerCase()
     );
 
@@ -63,8 +95,12 @@ function Register() {
     };
 
    
-    users.push(newUser);
-    localStorage.setItem("gamestore_users", JSON.stringify(users));
+    try {
+      localStorage.setItem("gamestore_users", JSON.stringify([...users, newUser]));
+    } catch {
+      setError("No se pudo guardar la cuenta. Intentá nuevamente.");
+      return;
+    }
 
     
     login({

@@ -41,7 +41,12 @@ const slides: Slide[] =[ {
     imagen: imgMinecraft,
   },
 ];                                         
-export function Home({ search, onAddToCart }: { search: string; onAddToCart: () => void }) {
+export function Home({ search, onAddToCart, favoriteIds, onToggleFavorite }: {
+  search: string
+  onAddToCart: (gameId: number) => void
+  favoriteIds: number[]
+  onToggleFavorite: (gameId: number) => void
+}) {
   const [actual, setActual] = useState<number>(0);
 
   
@@ -148,7 +153,13 @@ export function Home({ search, onAddToCart }: { search: string; onAddToCart: () 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,248px),1fr))] gap-5.5 max-[520px]:grid-cols-[minmax(0,1fr)]">
           {filteredGames.length > 0 ? (
             filteredGames.map((game) => (
-              <GameCard key={game.id} game={game} onAddToCart={onAddToCart} />
+              <GameCard
+                key={game.id}
+                game={game}
+                onAddToCart={() => onAddToCart(game.id)}
+                isFavorite={favoriteIds.includes(game.id)}
+                onToggleFavorite={() => onToggleFavorite(game.id)}
+              />
             ))
           ) : (
             <p className="col-span-full text-gray-400">

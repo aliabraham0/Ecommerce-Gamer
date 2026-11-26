@@ -5,14 +5,18 @@ import { games } from '../data/game'
 
 type DetailTab = 'description' | 'requirements' | 'reviews'
 
-export const GameDetail = ({ onAddToCart }: { onAddToCart: () => void }) => {
+export const GameDetail = ({ onAddToCart, favoriteIds, onToggleFavorite }: {
+  onAddToCart: (gameId: number) => void
+  favoriteIds: number[]
+  onToggleFavorite: (gameId: number) => void
+}) => {
   const { id } = useParams()
   const game = games.find(item => item.id === Number(id))
 
   const [activeImage, setActiveImage] = useState(0)
   const [activeTab, setActiveTab] = useState<DetailTab>('description')
-  const [isFavorite, setIsFavorite] = useState(false)
   const [isImageOpen, setIsImageOpen] = useState(false)
+  const isFavorite = game ? favoriteIds.includes(game.id) : false
 
   const dialogRef = useRef<HTMLDialogElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
@@ -106,12 +110,12 @@ export const GameDetail = ({ onAddToCart }: { onAddToCart: () => void }) => {
           </dl>
 
           <div className="flex gap-3">
-            <button onClick={onAddToCart}
+            <button onClick={() => onAddToCart(game.id)}
               className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-purple-600 py-3 font-bold hover:bg-purple-500">
               <FiShoppingCart /> Agregar al carrito
             </button>
 
-            <button onClick={() => setIsFavorite(!isFavorite)}
+            <button onClick={() => onToggleFavorite(game.id)}
               className={`rounded-lg border px-4 ${isFavorite ? 'border-pink-500 text-pink-500' : 'border-gray-700'}`}
               aria-label="Cambiar favorito">
               <FiHeart />

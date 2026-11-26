@@ -1,78 +1,96 @@
-# React + TypeScript + Vite
+# 🎮 Ecommerce Gamer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tienda online de videojuegos hecha con React y TypeScript. Permite explorar un catálogo, buscar juegos, ver el detalle de cada uno con su galería de imágenes y registrarse o iniciar sesión.
 
-Currently, two official plugins are available:
+![Captura del proyecto](src/assets/hero.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Características
 
-## React Compiler
+- Catálogo de juegos con tarjetas de portada
+- Buscador de juegos
+- Página de detalle con galería de capturas
+- Registro e inicio de sesión con validación de formularios
+- Rutas protegidas mediante contexto de autenticación
+- Panel de administración
+- Persistencia de datos en el navegador (localStorage)
+- Página "Acerca de" y página 404 personalizada
+- Diseño responsive con Tailwind CSS
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Catálogo incluido
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+Celeste, DEEPROOTED, Elden Ring, GTA, Hylics, Minecraft, Omori, OneShot, R.E.P.O. y Hollow Knight: Silksong.
 
-## Expanding the ESLint configuration
+## Tecnologías
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vite.dev/): bundler y servidor de desarrollo
+- [Tailwind CSS 4](https://tailwindcss.com/): estilos
+- [React Router](https://reactrouter.com/): enrutado
+- [React Hook Form](https://react-hook-form.com/): formularios
+- [Axios](https://axios-http.com/): peticiones HTTP
+- [React Icons](https://react-icons.github.io/react-icons/): íconos
+- ESLint + React Compiler: calidad y optimización del código
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Requisitos
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- [Node.js](https://nodejs.org/) 20.19 o superior
+- [pnpm](https://pnpm.io/) (o npm)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Instalación
 
+```bash
+# Clonar el repositorio
+git clone https://github.com/aliabraham0/Ecommerce-Gamer.git
+cd Ecommerce-Gamer
+
+# Instalar dependencias
+pnpm install
+
+# Iniciar el servidor de desarrollo
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+La app queda disponible en `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Scripts disponibles
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Comando | Descripción |
+|---------|-------------|
+| `pnpm dev` | Inicia el servidor de desarrollo |
+| `pnpm build` | Compila TypeScript y genera la build de producción |
+| `pnpm preview` | Sirve localmente la build de producción |
+| `pnpm lint` | Revisa el código con ESLint |
+
+## Estructura del proyecto
 
 ```
+src/
+├── assets/
+│   └── games/
+│       ├── gallery/      # Capturas de cada juego
+│       └── portada/      # Portadas
+├── components/           # Navbar, Footer, GameCard, SearchBar, ProtectedRoute
+├── context/              # AuthContext (autenticación)
+├── data/                 # Datos de los juegos
+├── hooks/                # useLocalStorage
+├── layouts/              # MainLayout
+├── page/                 # Home, GameDetail, Login, Register, Admin, About, 404
+├── services/             # gameService
+├── App.tsx
+├── index.css
+└── main.tsx
+```
+
+## Estado del proyecto
+
+En desarrollo.
+
+- [x] Catálogo y detalle de juegos
+- [x] Login y registro
+- [x] Panel de administración
+- [ ] [Carrito de compras]
+- [ ] [Pasarela de pago]
+
+## Licencia
+
+[MIT / Todos los derechos reservados]

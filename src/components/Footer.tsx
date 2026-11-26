@@ -4,7 +4,7 @@ import { FaXTwitter } from "react-icons/fa6"
 import { IoGameControllerSharp } from "react-icons/io5"
 
 const footerLinks = [
-  { label: "Inicio", to: "/" },
+  { label: "Inicio", to: "/Home" },
   { label: "Tienda", to: "/tienda" },
   { label: "Sobre nosotros", to: "/about" },
   { label: "Contacto", to: "/contacto" },

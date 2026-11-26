@@ -28,7 +28,7 @@ export const Navbar = ({ cartCount, search, onSearch }: NavbarProps) => {
         </div>
 
         <NavLink
-          to="/"
+          to="/Home"
           className="flex items-center gap-2 px-2 py-2 text-white rounded-md transition-colors hover:bg-violet-800 hover:text-sky-400"
         >
           <IoHomeOutline className="text-violet-500" />
@@ -63,7 +63,7 @@ export const Navbar = ({ cartCount, search, onSearch }: NavbarProps) => {
 
         <div className="flex items-center gap-2 text-white">
           <FiShoppingCart className="text-violet-500" />
-          <span>Carrito</span>
+          <button>Carrito</button>
           <span
             className="bg-violet-600 text-white rounded-full px-2 py-1 text-sm"
             aria-live="polite"
